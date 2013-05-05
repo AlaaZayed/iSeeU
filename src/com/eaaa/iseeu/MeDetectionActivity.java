@@ -6,12 +6,16 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener;
 import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
 import com.eaaa.iseeu.R;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
@@ -33,6 +37,7 @@ public class MeDetectionActivity extends Activity implements
 
 				// Load native library after OpenCV initialization
 				System.loadLibrary("micro_expression_detection");
+				
 				cameraView.enableView();
 			}
 				break;
@@ -106,7 +111,7 @@ public class MeDetectionActivity extends Activity implements
 		// TODO Auto-generated method stub
 		Log.i(TAG, "Operating on frame");
 		MicroExpRecogNative.recognizeExpression(inputFrame.getNativeObjAddr());
-		return null;
+		return inputFrame;
 	}
 
 }
